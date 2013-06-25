@@ -1,0 +1,21 @@
+{
+  "title":"Urlufy o_O",
+  "description": "Uglify",
+  "system_name":"uglify",
+  "version":"1.0.3",
+  "api_version": "1.0.0",
+  "platform": ["desktop", "ios"],
+  "dependencies":[
+    {                    "path":"css/common.css"},
+    {"context":"editor", "path":"css/editor.css"},
+
+    {"path":"expcommon/utEditableContent/1.0/js/utEditableContent.js"},
+    {"path":"expcommon/utEditableContent/1.0/css/utEditableContent.css"},
+
+
+    {"context":"editor", "path":"js/face.js"},
+    {"context":"editor", "path":"js/filters.js"},
+    {"context":"editor", "path":"js/editor.js"},
+    {"context":"player", "path":"js/player.js"}
+  ]
+}

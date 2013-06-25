@@ -1,0 +1,266 @@
+@font-face {
+  font-family: 'CasinoHandRegular';
+  src: url('Casino_Hand-webfont.eot');
+  src: url('Casino_Hand-webfont.eot?#iefix') format('embedded-opentype'),
+  url('Casino_Hand-webfont.woff') format('woff'),
+  url('Casino_Hand-webfont.ttf') format('truetype'),
+  url('Casino_Hand-webfont.svg#CasinoHandRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.desc{
+    background-color: #464646;
+    box-shadow: inset 0 0 .8em rgba(0, 0, 0, 0.3);
+    font-family: "CasinoHandRegular";
+    text-shadow: 0 0 3px rgba(0,0,0,1);
+}
+
+.add-button-wrapper{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1.8em;
+    margin-left: -6.6em;
+    z-index: 5;
+    text-align: center;
+}
+
+.full .add-button-wrapper{
+    display: none;
+}
+
+.remove-button{
+    display: none;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    z-index: 5;
+}
+
+.full .remove-button{
+    display: block;
+}
+
+.help{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.95);
+    z-index: 20;
+    text-align: center;
+}
+
+.help-title,
+.help-bottom,
+.help-gotit{
+    left: 0;
+    width: 100%;
+
+    position: absolute;
+    color: rgba(255,255,255,1);
+}
+
+.help-title{
+  height: 60px;
+  line-height: 60px;
+  font-size: 40px;
+  top:-60px;
+}
+
+.help-bottom{
+  height: 50px;
+  line-height: 50px;
+  font-size: 28px;
+  bottom:-50px;
+}
+
+/*.help-bottom2{
+  height: 30px;
+  line-height: 30px;
+  font-size: 24px;
+  bottom:-60px;
+}*/
+
+.help-gotit{
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    bottom: -120px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(7, 134, 158, 0.7);
+    box-shadow: 0 0 5px 0px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+
+.help-gotit:hover{
+    border: 1px solid rgba(255,255,255,0.7);
+    background: rgba(7, 134, 158, 0.87);
+}
+
+.help-gotit:active{
+    border: 1px solid rgba(255,255,255,1);
+    background: rgba(7, 134, 158, 0.87);
+    box-shadow: 0 2px 4px 0px rgba(0,0,0,0.6) inset;
+    text-shadow: 0 -1px 3px rgba(0,0,0,0.7);
+}
+
+
+
+.help-face{
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 240px;
+    margin-left: -160px;
+    margin-top: -120px;
+    position: absolute;
+    background-image: url('../face.jpeg');
+    z-index: 20;
+/*    overflow: hidden;*/
+    border-radius: 4px;
+      -webkit-animation: face 3s infinite ease-in-out;
+      -moz-animation:    face 3s infinite ease-in-out;
+      animation:         face 3s infinite ease-in-out;
+}
+
+
+@-webkit-keyframes face {
+  0% {
+    background-image: url('../face.jpeg');
+  }
+
+  20% {
+    background-image: url('../face.jpeg');
+  }
+
+  50% {
+    background-image: url('../face.jpeg');
+  }
+
+  70% {
+    background-image: url('../face_eye.jpeg');
+  }
+
+  100% {
+    background-image: url('../face_eye.jpeg');
+  }
+}
+
+
+
+.help-finger{
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-image: url('../finger.svg');
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 20;
+    border-radius: 4px;
+
+      -webkit-animation: finger 3s infinite ease-in-out;
+      -moz-animation:    finger 3s infinite ease-in-out;
+      animation:         finger 3s infinite ease-in-out;
+}
+
+@-webkit-keyframes finger {
+  0% {
+    -webkit-transform: translate(42px,68px);
+    -moz-transform:    translate(42px,68px);
+    transform:         translate(42px,68px);
+  }
+
+  20% {
+    -webkit-transform: translate(42px,68px);
+    -moz-transform:    translate(42px,68px);
+    transform:         translate(42px,68px);
+  }
+
+
+  50% {
+    -webkit-transform: translate(140px,140px);
+    -moz-transform:    translate(140px,140px);
+    transform:         translate(140px,140px);
+  }
+
+  51% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
+
+.help-circle{
+
+    top: 70px;
+    left: 76px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+  -webkit-animation: circ 3s infinite ease-in-out;
+  -moz-animation:    circ 3s infinite ease-in-out;
+  animation:         circ 3s infinite ease-in-out;
+}
+
+
+@-webkit-keyframes circ {
+  0% {
+    width:  0px;
+    height: 0px;
+    -webkit-transform: translate(0px,0px);
+    -moz-transform:    translate(0px,0px);
+    transform:         translate(0px,0px);
+  }
+
+  20% {
+    width:  0px;
+    height: 0px;
+    -webkit-transform: translate(0px,0px);
+    -moz-transform:    translate(0px,0px);
+    transform:         translate(0px,0px);
+  }
+
+  50% {
+    width:  260px;
+    height: 260px;
+    -webkit-transform: translate(-130px,-130px);
+    -moz-transform:    translate(-130px,-130px);
+    transform:         translate(-130px,-130px);
+  }
+
+  51% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
+
+
+.icon_spinner{
+
+ /* display: inline-block;*/
+}
+
+
+
+
+
+
+
+
+
+
+
