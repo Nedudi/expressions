@@ -17,6 +17,11 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 .image{
@@ -26,6 +31,8 @@
   width: 100%;
   height: 100%;
   z-index: 3;
+  overflow: hidden;
+
 }
 
 .canvas{
@@ -35,11 +42,6 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-  -moz-user-select: -moz-none;
-  -o-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .frame{
@@ -49,26 +51,35 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-  -moz-user-select: -moz-none;
-  -o-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  background: url(../images/frame1.svg);
+  /*background: url(../images/frame1.svg);*/
   background-size: 100% 100%;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition:         opacity .2s ease-in-out;
+}
+
+.ready_to_post .frame{
+  opacity: 1;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition:         opacity .2s ease-in-out;
 }
 
 .zoomer, .help-circle{
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 100px;
+  width: 0px;
+  height: 0px;
   z-index: 3;
   background: rgba(0,0,0,0.1);
   border-radius: 50%;
-  border: 2px dashed rgba(0,0,0,0.3);
+  border: 2px solid black;
+  pointer-events:none;
+  word-wrap: break-word;
+  color: transparent;
+  text-shadow: 0 0 0 transparent;
 }
 
 
@@ -76,19 +87,45 @@
   position: absolute;
   width: 94%;
   left: 3%;
-  bottom: 3%;
+  bottom: -200px;
   z-index: 100;
   text-align: center;
   color: white;
   text-shadow:  0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
   font-family: "BoycottRegular", Arial;
   font-size: 80px;
+  -webkit-transition: bottom 0.2s 0.4s ease-in-out;
+  transition:         bottom 0.2s 0.4s ease-in-out;
+
+
+
+
+}
+
+.ready_to_post .text{
+  bottom: 3%;
+  -webkit-transition: bottom 0.2s 0.4s ease-in-out;
+  transition:         bottom 0.2s 0.4s ease-in-out;
 }
 
 .ut_ce{
   padding: 4% !important;
   min-height: 1em  !important;
-  line-height: 0.9;
+  line-height: 1;
+
+
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+}
+
+.ut_edit{
+    -moz-user-select: -moz-all;
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -o-user-select: all;
+  user-select: all;
 }
 
 .ut_p span{

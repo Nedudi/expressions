@@ -1,6 +1,8 @@
 
 	var uglify = function(canvas, mode, x, y, r, callback) {
 
+		console.log(canvas, mode, x, y, r, callback)
+
 		var ctx = canvas.getContext('2d');
 
 		var imageR = ctx.getImageData(0, 0, canvas.width, canvas.height);
