@@ -1,0 +1,21 @@
+.tip{
+  position: absolute;
+  width: 100%;
+  color:white;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0.5);
+  top: -50px;
+  left: 0;
+  padding: 10px;
+  text-align: center;
+  transition:         250ms ease-in-out;
+  -moz-transition:    250ms ease-in-out;
+  -webkit-transition: 250ms ease-in-out;
+}
+
+body:hover .tip{
+  top: 0;
+  transition:         250ms ease-in-out;
+  -moz-transition:    250ms ease-in-out;
+  -webkit-transition: 250ms ease-in-out;
+}

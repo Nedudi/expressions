@@ -1,0 +1,167 @@
+@font-face {
+    font-family: 'BoycottRegular';
+    src: url('BOYCOTT_-webfont.eot');
+    src: url('BOYCOTT_-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BOYCOTT_-webfont.woff') format('woff'),
+         url('BOYCOTT_-webfont.ttf') format('truetype'),
+         url('BOYCOTT_-webfont.svg#BoycottRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'CasinoHandRegular';
+  src: url('Casino_Hand-webfont.eot');
+  src: url('Casino_Hand-webfont.eot?#iefix') format('embedded-opentype'),
+  url('Casino_Hand-webfont.woff') format('woff'),
+  url('Casino_Hand-webfont.ttf') format('truetype'),
+  url('Casino_Hand-webfont.svg#CasinoHandRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.container{
+  -webkit-backface-visibility:hidden;
+  -webkit-transform:translateZ(0px);
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.desc {
+  position: relative;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  font-family: "CasinoHandRegular";
+  text-shadow: 0 0 3px rgba(0,0,0,1);
+  visibility: hidden;
+}
+
+.desc.main-mode,
+.desc.help-mode,
+.desc.view-mode{
+  visibility: visible;
+}
+
+.image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 3;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  transition:         background-image 250ms ease-in-out;
+  -moz-transition:    background-image 250ms ease-in-out;
+  -webkit-transition: background-image 250ms ease-in-out;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.help-mode .image{
+  min-height: 380px !important;
+}
+
+.canvas{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.frame{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: url(../images/123.svg);
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition:         opacity .2s ease-in-out;
+}
+
+.ready-to-post .frame,
+.view-mode .frame{
+  opacity: 1;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition:         opacity .2s ease-in-out;
+}
+
+
+
+
+.text{
+  position: absolute;
+  width: 94%;
+  left: 3%;
+  bottom: -200px;
+  z-index: 100;
+  text-align: center;
+  color: white;
+  text-shadow:  0 0 5px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1);
+  font-family: "BoycottRegular", Arial;
+  font-size: 80px;
+  -webkit-transition: bottom 0.2s 0.4s ease-in-out;
+  transition:         bottom 0.2s 0.4s ease-in-out;
+  visibility: hidden;
+}
+
+.ready-to-post.main-mode .text,
+.view-mode .text{
+  bottom: 3%;
+  -webkit-transition: bottom 0.2s 0.4s ease-in-out;
+  transition:         bottom 0.2s 0.4s ease-in-out;
+  visibility: visible;
+}
+
+.ut_ce{
+  padding: 4% !important;
+  min-height: 1em  !important;
+  line-height: 1;
+
+
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+
+}
+
+.ut_edit{
+    -moz-user-select: -moz-all;
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -o-user-select: all;
+  user-select: all;
+}
+
+.ut_p span{
+  color: white;
+  border: 2px dashed rgba(255,255,255,0.8);
+  display: block;
+  white-space: nowrap;
+  font-size: 0.5em;
+  background: rgba(0,0,0,0.1);
+}
