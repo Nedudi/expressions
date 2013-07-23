@@ -13,7 +13,8 @@ UT.Expression.ready(function(post) {
   that.view.sw          = $('.sw');
   that.view.swcheckbox  = $('.sw input');
   that.view.swlabel     = $('.sw label');
-  that.view.refresh     = $('.sw .refresh');
+  that.view.undo        = $('.sw .undo');
+  that.view.redo        = $('.sw .redo');
   that.view.helpme      = $('.sw .helpme');
 
   that.zoomer = {pos:false};
@@ -56,44 +57,26 @@ UT.Expression.ready(function(post) {
     e.stopPropagation();
   });
 
-  that.touchToXY = function(e){
-    if(e.customX && e.customY) return {x:e.customX,y:e.customY};
-    var out = {x:0, y:0};
-    if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
-      var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-      out.x = touch.pageX  - that.offset.left;
-      out.y = touch.pageY - that.offset.top;
-    } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
-      out.x = e.pageX - that.offset.left ;
-      out.y = e.pageY - that.offset.top;
-    }
-    return out;
-  };
-
   that.initZoomer = function(){
-    $('body')
-    .on(that.isTouch?'touchstart':'mousedown', function(e){
-      that.view.text.utEditableContent('blur');
-      that.view.text.utEditableContent('view');
-      if(!that.zoomer.pos){
-        var pointerPos = that.touchToXY(e);
+   that.view.image.pointerAction({
+      back:$('body'),
+      onStart: function(v){
+        var pointerPos = v;
         that.zoomer.pos = pointerPos;
         that.zoomer.pos.r = 0;
         that.renderZoomer();
-      }
-    })
-    .on(that.isTouch?'touchmove':'mousemove', function(e){
-      if(that.zoomer.pos){
+      },
+      onMove: function(v){
         var z = that.zoomer.pos;
-        var p = that.touchToXY(e);
+        var p = v;
         z.r = Math.sqrt((p.x - z.x)*(p.x - z.x) + (p.y - z.y)*(p.y - z.y));
         that.renderZoomer();
+      },
+      onEnd: function(v){
+        that.doLoupe(that.zoomer.pos);
+        that.zoomer.pos = false;
+        that.renderZoomer();
       }
-    })
-    .on(that.isTouch?'touchend touchcancel':'mouseup mouseleave', function(e){
-      that.doLoupe(that.zoomer.pos);
-      that.zoomer.pos = false;
-      that.renderZoomer();
     });
   };
 
@@ -130,6 +113,7 @@ UT.Expression.ready(function(post) {
     uglify(that.view.canvas[0],that.zoomMode, p.x, p.y, p.r, function(){
       setTimeout(function(){
         post.storage.imageD = new UT.Image(that.view.canvas.get(0).toDataURL());
+        that.view.canvas.canvasUndoRedo('save');
         post.save();
         that.readyToPost(true);
       },100);
@@ -149,6 +133,20 @@ UT.Expression.ready(function(post) {
     that.view.canvasCtx = that.view.canvas.get(0).getContext('2d');
     that.view.canvasCtx.clearRect(0, 0, that.view.image.width(), that.view.image.height());
     that.view.canvasCtx.drawImage(that.img, 0, 0, that.view.image.width(), that.view.image.height());
+
+    that.view.canvas.canvasUndoRedo({
+      undoControl:$('.undo'),
+      redoControl:$('.redo'),
+      onUndo:function(v){
+        console.log('undo',v);
+      },
+      onRedo:function(v){
+        console.log('redo',v);
+      },
+      onChange: function(v){
+        console.log('change',v);
+      }
+    });
   };
 
   that.clear = function(){
@@ -178,7 +176,8 @@ UT.Expression.ready(function(post) {
         top: "", height: "", marginTop:""
       });
     }
-    that.offset = $(that.view.image).offset();
+    that.view.image.pointerAction('update');
+    //that.offset = $(that.view.image).offset();
   };
 
   that.changeMode = function(mode){
@@ -267,7 +266,7 @@ UT.Expression.ready(function(post) {
     });
   });
 
-  that.view.refresh.on('click',that.clear);
+  //that.view.refresh.on('click',that.clear);
   post.on('resize', function(){});
 
   if(!post.storage.imageD){

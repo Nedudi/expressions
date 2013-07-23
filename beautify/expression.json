@@ -13,6 +13,9 @@
     {"path":"expcommon/utEditableContent/1.0/js/utEditableContent.js"},
     {"path":"expcommon/utEditableContent/1.0/css/utEditableContent.css"},
 
+    {"context":"editor", "path":"expcommon/jQuery.pointerAction.js"},
+    {"context":"editor", "path":"expcommon/jquery.canvasUndoRedo.js"},
+
     {"context":"editor", "path":"js/face.js"},
     {"context":"editor", "path":"js/filters.js"},
     {"context":"editor", "path":"js/editor.js"},

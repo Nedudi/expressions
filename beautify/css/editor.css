@@ -410,7 +410,9 @@
 }
 
 .sw .refresh,
-.sw .helpme{
+.sw .helpme,
+.sw .undo,
+.sw .redo{
   display: none;
   cursor: pointer;
   color: rgba(50,50,50,1);
@@ -422,13 +424,17 @@
 }
 
 .ready-to-post .sw .refresh,
+.ready-to-post .sw .undo,
+.ready-to-post .sw .redo,
 .main-mode .sw .helpme{
   font-size: 20px;
-  position: absolute;
-  top: 10px;
-  left: 14px;
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 14px;
+/*  position: absolute;*/
+/*  top: 10px;
+  left: 14px;*/
   text-shadow: 0 0 0 transparent;
-  display: block;
 }
 
 .main-mode.ready-to-post .sw .helpme{
