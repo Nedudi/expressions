@@ -19,8 +19,18 @@ UT.Expression.ready(function(post) {
   var iS = new Image();
   var iD = new Image();
 
-  iS.url = post.storage.imageD.url;
-  iD.url = post.storage.imageS.url;
+  iS.onload = function(){
+    //console.log('ImageS loaded')
+  };
+
+  iD.onload = function(){
+    //console.log('ImageD loaded')
+  };
+
+  iS.src = post.storage.imageD.url;
+  iD.src = post.storage.imageS.url;
+
+
 
   that.view.desc.css('background-image','url('+post.storage.imageD.url+')');
   that.view.image.css('background-image','url('+post.storage.imageD.url+')');

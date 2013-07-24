@@ -102,7 +102,6 @@ UT.Expression.ready(function(post) {
 
   that.readyToPost = function(bool){
     that.view.desc[bool?'addClass':'removeClass']('ready-to-post');
-    post.valid(bool);
   };
 
   that.readyToAnimate = function(bool){
@@ -111,13 +110,16 @@ UT.Expression.ready(function(post) {
 
   that.doLoupe = function(p){
     uglify(that.view.canvas[0],that.zoomMode, p.x, p.y, p.r, function(){
-      setTimeout(function(){
-        post.storage.imageD = new UT.Image(that.view.canvas.get(0).toDataURL());
-        that.view.canvas.canvasUndoRedo('save');
-        post.save();
-        that.readyToPost(true);
-      },100);
+      that.view.canvas.canvasUndoRedo('snapshot');
     });
+  };
+
+  that.saveCanvasToStorage = function(){
+    setTimeout(function(){
+      post.storage.imageD = new UT.Image(that.view.canvas.get(0).toDataURL());
+      post.save();
+      that.readyToPost(true);
+    },100);
   };
 
   that.showImageDialog = function(fastQuit) {
@@ -133,18 +135,20 @@ UT.Expression.ready(function(post) {
     that.view.canvasCtx = that.view.canvas.get(0).getContext('2d');
     that.view.canvasCtx.clearRect(0, 0, that.view.image.width(), that.view.image.height());
     that.view.canvasCtx.drawImage(that.img, 0, 0, that.view.image.width(), that.view.image.height());
-
     that.view.canvas.canvasUndoRedo({
       undoControl:$('.undo'),
       redoControl:$('.redo'),
       onUndo:function(v){
-        console.log('undo',v);
+        that.saveCanvasToStorage();
+        if(v[0] <= 0) post.valid(false);
       },
       onRedo:function(v){
-        console.log('redo',v);
+        that.saveCanvasToStorage();
+        post.valid(true);
       },
-      onChange: function(v){
-        console.log('change',v);
+      onSnapshot: function(v){
+        that.saveCanvasToStorage();
+        post.valid(true);
       }
     });
   };
@@ -177,7 +181,6 @@ UT.Expression.ready(function(post) {
       });
     }
     that.view.image.pointerAction('update');
-    //that.offset = $(that.view.image).offset();
   };
 
   that.changeMode = function(mode){
@@ -266,7 +269,6 @@ UT.Expression.ready(function(post) {
     });
   });
 
-  //that.view.refresh.on('click',that.clear);
   post.on('resize', function(){});
 
   if(!post.storage.imageD){

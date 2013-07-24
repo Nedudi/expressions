@@ -11,7 +11,7 @@
           onMove:function(){},
           onEnd:function(){}
         };
- 
+
         that.options = jQuery.extend(defaults,options);
         that.pos = false;
         that.options.back = $(that.options.back);

@@ -4,14 +4,14 @@
       return this.each(function() {
         var $that = $(this);
         var that = this;
-        
+
         that.$canvas = $(this);
         that.canvas = this;
         that.context = this.getContext('2d');
 
 
         var defaults = {
-          bitmap:{
+          canvasCopy:{
             width: that.$canvas.attr('width') || that.$canvas.width(),
             height: that.$canvas.attr('height') || that.$canvas.height()
           },
@@ -19,9 +19,9 @@
           redoControl:false,
           onUndo:function(){},
           onRedo:function(){},
-          onChange:function(){}
+          onSnapshot:function(){}
         };
- 
+
         that.options = jQuery.extend(defaults,options);
 
         //that.bimap
@@ -43,18 +43,18 @@
 
         that.getCanvasCopy = function(){
           var canvasCopy =  document.createElement('canvas');
-          canvasCopy.setAttribute('width', that.options.bitmap.width);
-          canvasCopy.setAttribute('height', that.options.bitmap.height);         
-          canvasCopy.getContext("2d").drawImage(that.canvas,0,0); 
-          return canvasCopy; 
+          canvasCopy.setAttribute('width', that.options.canvasCopy.width);
+          canvasCopy.setAttribute('height', that.options.canvasCopy.height);
+          canvasCopy.getContext("2d").drawImage(that.canvas,0,0);
+          return canvasCopy;
         };
 
-        that.save = function() {
+        that.snapshot = function() {
           var canvasCopy = that.getCanvasCopy();
-          that.options.onChange();
-          that.addToUndoStack({ bitmap: canvasCopy });
+          that.addToUndoStack({ canvasCopy: canvasCopy });
           that.redoStack.length = 0;
-          console.log('undoredo-->',that.getUndoRedoState());
+          that.options.onSnapshot(that.getUndoRedoState());
+          that.setInactiveStates();
         };
 
         that.addToUndoStack = function(data) {
@@ -65,35 +65,40 @@
           that.undoStack.push(data);
         };
 
+        that.setInactiveStates = function(){
+          var a = that.getUndoRedoState();
+          if(a[0]>0){that.options.undoControl.removeClass('inactive');} else {that.options.undoControl.addClass('inactive');}
+          if(a[1]>0){that.options.redoControl.removeClass('inactive');} else {that.options.redoControl.addClass('inactive');}
+        };
+
         that.undo = function() {
           if (that.undoStack.length) {
             that.redoStack.push(that.undoStack.pop());
-            that.context.clearRect(0, 0, that.options.bitmap.width, that.options.bitmap.height);
+            that.context.clearRect(0, 0, that.options.canvasCopy.width, that.options.canvasCopy.height);
             if (that.undoStack.length) {
-              that.setCopy(that.undoStack[that.undoStack.length - 1].bitmap);
+              that.setCopy(that.undoStack[that.undoStack.length - 1].canvasCopy);
             } else {
-              console.log('ORIGINAL',that.original)
               that.setCopy(that.original);
             }
-            that.options.onChange();         
-            console.log('undo-->',that.getUndoRedoState());
+            that.options.onUndo(that.getUndoRedoState());
+            that.setInactiveStates();
           }
         };
 
         that.redo = function() {
           if (that.redoStack.length) {
             var data = that.redoStack[that.redoStack.length - 1];
-            that.context.clearRect(0, 0, that.options.bitmap.width, that.options.bitmap.height);
-            that.context.drawImage(data.bitmap, 0, 0);
+            that.context.clearRect(0, 0, that.options.canvasCopy.width, that.options.canvasCopy.height);
+            that.context.drawImage(data.canvasCopy, 0, 0);
             that.undoStack.push(that.redoStack.pop());
-            that.options.onChange();
-            console.log('redo-->',that.getUndoRedoState());
+            that.options.onRedo(that.getUndoRedoState());
+            that.setInactiveStates();
           }
         };
 
         that.clear = function() {
-          that.context.clearRect(0, 0, that.options.bitmap.width, that.options.bitmap.height);
-          that.save();
+          that.context.clearRect(0, 0, that.options.canvasCopy.width, that.options.canvasCopy.height);
+          //that.snapshot();
         };
 
         that.reset = function() {
@@ -119,7 +124,7 @@
             e.stopPropagation();
           });
         }
-        
+
         if(that.options.redoControl){
           that.options.redoControl.on('click', function(e){
             e.stopPropagation();
@@ -147,9 +152,9 @@
       });
       return this;
     },
-    save: function(val){
+    snapshot: function(val){
       this.each(function() {
-        this.save();
+        this.snapshot();
       });
       return this;
     }
