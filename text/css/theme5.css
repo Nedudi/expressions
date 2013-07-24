@@ -1,0 +1,60 @@
+/*=======================  THEME 5  =========================*/
+
+.desc.t5{
+
+  font-size:130%;
+  line-height: 0.9  ;
+
+text-transform: uppercase;
+
+  font-family: 'Arial black';
+font-family: 'Finger Paint', cursive;
+   color: rgba(255,255,255,0.5);
+   text-shadow: 0px 0px 2px rgba(0, 194, 255, 0.1),0px 0px 10px rgba(255,255,255,0.6), 0px 0px 30px rgba(255,255,255,0.9),0px 0px 30px rgba(0, 194, 255, 1);
+
+
+}
+
+.desc.t5 h1{
+  padding: 0.6em;
+/*  background:black;*/
+}
+
+
+
+
+.desc.t5 span{
+  line-height: 1.6;
+
+
+ /* border-bottom: 1px solid red;*/
+}
+
+.desc.t5 span b{
+  position: relative;
+  vertical-align: middle;
+}
+
+
+
+.desc.t5::after{
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  background-color: rgba(0, 194, 255, 1);
+  background-position: 50% 50%, 10% 30%, 203% 69%, 200% 0;
+  background-size: 100% auto, auto auto, 200% auto, 20% auto;
+  background-image: -webkit-radial-gradient(center, circle cover, rgba(50,220, 255, 0.3) 26%, rgba(0, 194, 255, 0.4) 50%, rgba(0, 194, 255, 1) 90%), url(../images/wet.jpg);
+  background-image:    -moz-radial-gradient(center, circle cover, rgba(50,220, 255, 0.3) 26%, rgba(0, 194, 255, 0.4) 50%, rgba(0, 194, 255, 1) 90%), url(../images/wet.jpg);
+  background-image:     -ms-radial-gradient(center, circle cover, rgba(50,220, 255, 0.3) 26%, rgba(0, 194, 255, 0.4) 50%, rgba(0, 194, 255, 1) 90%), url(../images/wet.jpg);
+  background-image:      -o-radial-gradient(center, circle cover, rgba(50,220, 255, 0.3) 26%, rgba(0, 194, 255, 0.4) 50%, rgba(0, 194, 255, 1) 90%), url(../images/wet.jpg);
+  background-image:         radial-gradient(circle at center,     rgba(50,220, 255, 0.3) 26%, rgba(0, 194, 255, 0.4) 50%, rgba(0, 194, 255, 1) 90%), url(../images/wet.jpg);
+
+  /*background-image: url(../images/splash1.png), url(../images/splash2.png);*/
+  opacity: 0.2;
+  pointer-events: none;
+}

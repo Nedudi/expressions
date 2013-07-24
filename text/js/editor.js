@@ -15,15 +15,6 @@ UT.Expression.ready(function(post){
     s.parentNode.insertBefore(wf, s);
   })();
 
-
-
-
-
-
-
-
-
-
   var that = {};
   that.view = {};
   that.view.container      = $("<div>",{'class':'conainer'}).appendTo(post.node);
@@ -45,7 +36,7 @@ UT.Expression.ready(function(post){
         that.view.desc.alterClass("t*","t" + v);
         that.view.h1.slabText({});
 
-        post.resize({height: that.view.desc.outerHeight()});
+        post.size({height: that.view.desc.outerHeight()});
 
         // $('.slabtext b').on('click', function(){
 
@@ -67,7 +58,7 @@ UT.Expression.ready(function(post){
   //   });
   // });
 
-  that.updateStyle(4);
+  that.updateStyle(2);
 
  // that.view.h1             = $("<h1>").html("Click to enter your idea, status or quote insted of this boring text").appendTo(that.view.desc);
  // that.view.h1             = $("<h1>").html("Official wall. Only for serious messages :D").appendTo(that.view.desc);
@@ -78,16 +69,18 @@ UT.Expression.ready(function(post){
 
 
  that.view.media          = $("<div>",{'class':'media'}).appendTo(that.view.desc);
- that.view.mediaCore      = $("<div>",{'class':'media_core'}).appendTo(that.view.media);
+ that.view.mediaCore      = $("<div>",{'class':'media_core', 'id':'media1'}).appendTo(that.view.media);
+ that.view.mediaMenu      = $("<div>",{'class':'media_core_menu'}).appendTo(that.view.media);
+
+ that.view.mediaMenuHeader    = $("<div>",{'class':'media_core_menu_header'}).html('Add any type of media here').appendTo(that.view.mediaMenu);
+ that.view.mediaMenuImage     = $("<div>",{'class':'button media_core_menu_item media_core_menu_item_image icon_picture'}).appendTo(that.view.mediaMenu);
+ that.view.mediaMenuVideo     = $("<div>",{'class':'button media_core_menu_item media_core_menu_item_video icon_video_alt'}).appendTo(that.view.mediaMenu);
+ that.view.mediaMenuAudio     = $("<div>",{'class':'button media_core_menu_item media_core_menu_item_audio icon_sound'}).appendTo(that.view.mediaMenu);
+
  that.view.buttons        = $("<div>",{'class':'buttons'}).appendTo(that.view.desc)
- that.view.buttonEditText = $("<a>",{'class':'button_edit_text'}).html('Edit text').appendTo(that.view.buttons);
 
-
- that.view.buttonEditPlus= $("<a>",{'class':'button_edit_style'}).html('+').appendTo(that.view.buttons);
- that.view.buttonEditMinus= $("<a>",{'class':'button_edit_style'}).html('-').appendTo(that.view.buttons);
-
-
- that.view.buttonEditStyle= $("<a>",{'class':'button_edit_style'}).html('Edit style').appendTo(that.view.buttons);
+ that.view.buttonEditText = $("<a>",{'class':'button icon_text  button_edit_text' }).prop('title','Edit text' ).appendTo(that.view.buttons);
+ that.view.buttonEditStyle= $("<a>",{'class':'button icon_brush button_edit_style'}).prop('title','Edit style').appendTo(that.view.buttons);
 
  that.view.h1             = $("<h1>").html("HEY Hipsters, wake up! Oldschool! Join the game! 8-bit style ;)").appendTo(that.view.desc);
 
