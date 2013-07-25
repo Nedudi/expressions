@@ -1,0 +1,105 @@
+.utPopupText {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(255,255,255,0.75);
+  display: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition:    all 0.3s ease-in-out;
+  -o-transition:      all 0.3s ease-in-out;
+  transition:         all 0.3s ease-in-out;
+  z-index: 500;
+  font-size: 10px;
+}
+
+.utPopupText.utPopupText_show{
+  bottom: 0;
+  opacity: 1;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition:    all 0.4s ease-in-out;
+  -o-transition:      all 0.4s ease-in-out;
+  transition:         all 0.4s ease-in-out;
+}
+
+.utPopupText .utPopupText_items {
+  background-color: rgba(255,255,255,0.9);
+  box-shadow:         0 1px 2px 1px rgba(60, 60, 60, 0.5);
+  -moz-box-shadow:    0 1px 2px 1px rgba(60, 60, 60, 0.5);
+  -webkit-box-shadow: 0 1px 2px 1px rgba(60, 60, 60, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.utPopupText .utPopupText_title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 7em;
+  text-align: center;
+  line-height: 7em;
+  font-family: 'CasinoHandRegular', Arial, Helvetica, sans-serif;
+  z-index: 5;
+  color: rgba(0,0,0,0.5);
+}
+
+.utPopupText .utPopupText_title span {
+  font-size: 2em;
+}
+
+
+.utPopupText textarea{
+  display: block;
+  width: 100%;
+  height: 200px;
+  min-height: inherit;
+  overflow: hidden;
+  box-shadow: none;
+  resize: none;
+  background: url('../images/bg.jpg');
+  border: 0px solid rgba(0,0,0,0.3);
+  border-radius: 2px;
+  margin: 0;
+  margin-top: 70px;
+  padding: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+  text-align: inherit;
+  text-decoration: inherit;
+  text-transform: inherit;
+  text-indent: inherit;
+  font-size: 30px;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  line-height: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  white-space: pre-wrap;
+  outline: none;
+  box-shadow: 0 2px 10px 1px rgba(0,0,0,0.3) inset;
+  box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.utPopupText textarea:focus {
+  outline: none;
+}
+
+.utPopupText textarea::-webkit-input-placeholder            {color: rgba(0,0,0,0.5);}
+.utPopupText textarea::-moz-placeholder                     {color: rgba(0,0,0,0.5);}
+.utPopupText textarea:-ms-input-placeholder                 {color: rgba(0,0,0,0.5);}
+.utPopupText textarea:focus::-webkit-input-placeholder      {color: rgba(0,0,0,0.3);}
+.utPopupText textarea:focus::-moz-placeholder               {color: rgba(0,0,0,0.3);}
+.utPopupText textarea:focus:-ms-input-placeholder           {color: rgba(0,0,0,0.3);}

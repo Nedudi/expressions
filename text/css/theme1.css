@@ -8,14 +8,14 @@
   background-image:         radial-gradient(circle at center,     transparent, rgba(12,22,35,0) 26%, rgba(14,24,37,0.1) 40%, rgba(24,32,45,0.5) 100%), url(../images/grunge.png);
 }
 
-.desc.t1 .media,
-.desc.t1 h1{
+.desc.t1 .media_container,
+.desc.t1 .text_container{
   background: rgba(255,255,255,0.3);
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,0.1);
 }
 
 
-.desc.t1 h1{
+.desc.t1 .text_container{
   color:rgba(0,0,0,1);
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   font-family:"Impact", Charcoal, Arial Black, Gadget, Sans serif;

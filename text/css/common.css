@@ -33,20 +33,44 @@ h1{
 
 
 
-.media{
-  height: 160px;
+.media_container{
   margin-bottom: 10px;
   padding: 10px;
   position: relative;
 }
 
 .media_core{
+  min-height: 140px;
   height: 100%;
   width: 100%;
   z-index: 100;
   position: relative;
+  z-index: 140;
 }
 
+.media{
+  z-index: 100;
+  font-size:10px;
+
+}
+
+
+/*.media.image{
+
+}
+
+.media.video{
+  height:
+}
+
+
+.media.video{
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  position: absolute;
+}
+*/
 
 
 
