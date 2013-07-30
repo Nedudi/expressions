@@ -1,16 +1,37 @@
 {
   "title":"Mood share",
   "system_name":"mood-share",
-  "version":"1.0.18",
+  "description":"Share your mood with one of 6 different styles. You can add image, video or audio as well",
+  "version":"1.0.49",
   "admins":["dmitry"],
   "api_version":"1.1.0",
   "assets":[
+    "images/1.png",
+    "images/2.png",
+    "images/3.png",
+    "images/4.png",
+    "images/5.png",
+    "images/6.png",
+    "images/grunge.jpg",
+    "images/gr.png",
+    "images/rasta.jpg",
+    "images/splash1.png",
+    "images/tvtest.jpg",
 
+    "css/pressstart2p-regular-webfont.woff",
+    "css/nosifer-regular-webfont.woff",
+    "css/Casino_Hand-webfont.woff",
+    "css/GoodDog-webfont.woff",
+    "css/BebasNeue-webfont.woff"
   ],
   "dependencies":[
 
 
     {                    "path":"expcommon/jquery/2.0/js/jquery.ex.js"},
+
+    {                    "path":"utImage/jquery.ut-image.js"},
+    {                    "path":"utImage/spin.min.js"},
+    {                    "path":"utImage/jquery.ut-image.css"},
 
     {                    "path":"expcommon/utFontDetect/1.0/fontdetect.2.1.js"},
 

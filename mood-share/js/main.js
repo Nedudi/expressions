@@ -5,7 +5,7 @@ UT.Expression.ready(function(post){
   that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
 
   that.fonts = {
-    1:false,
+    1:'bebas_neueregular',
     2:'nosiferregular',
     3:false,
     4:'press_start_2pregular',
@@ -36,6 +36,7 @@ UT.Expression.ready(function(post){
   };
 
   that.updateTheme = function(v){
+    that.view.container.css('left','-4000px');
     that.view.h1.removeClass('slabtextdone');
     $('body').removeClass('slabtexted');
     if(v){
@@ -52,15 +53,16 @@ UT.Expression.ready(function(post){
     }
 
     var onFontLoaded = function(){
+      that.view.container.css('left','0px');
       var l = post.storage.h1?post.storage.h1.length:1;
       var fs = $(post.node).width()/l*1.5;
       if(fs>$(post.node).width()/40) fs = $(post.node).width()/40;
       that.view.desc.css('fontSize', fs + 'px' );
       that.view.container.alterClass("t*","t" + v);
       that.view.h1.slabText({
-        noResizeEvent: true,
-        fontRatio: 1.4,
-        minCharsPerLine: 2
+         noResizeEvent: true,
+         fontRatio: 1.4
+        // minCharsPerLine: 2
       });
 
       that.view.h1.find('b').map(function(i,v){
@@ -128,13 +130,16 @@ UT.Expression.ready(function(post){
       maxLength: '200'
     });
 
-    that.view.mediaCore.on('click', '.ut-image-remove-button, .ut-video-ui-remove, .ut-audio-ui-remove', function(){
+    that.view.mediaCore.off('click').on('click', '.ut-image-button-remove, .ut-video-ui-remove, .ut-audio-ui-remove', function(e){
+      e.stopPropagation();
+      e.preventDefault();
       that.clearMedia();
     });
 
 
 
     that.editStyle = function(){
+      post.valid(false);
       that.view.container.addClass('button_edit_hidden');
       that.updateSize();
       that.view.menu.utPopupMenu('show',{val:post.storage.theme},function(v){
@@ -143,16 +148,19 @@ UT.Expression.ready(function(post){
         that.updateSize();
         that.updateText();
         that.updateTheme(v);
+        that.validate();
       });
     };
 
     that.editText = function(){
+      post.valid(false);
       if(that.isTouch){
         post.dialog('text', {value: post.storage.h1}, function(v){
           if(v){
             that.updateSize();
             that.updateText(v);
             that.updateTheme();
+            that.validate();
           }
         });
       } else {
@@ -164,6 +172,7 @@ UT.Expression.ready(function(post){
           that.updateSize();
           that.updateText(v);
           that.updateTheme();
+          that.validate();
         });
       }
 
@@ -185,7 +194,6 @@ UT.Expression.ready(function(post){
   };
 
   that.clearMedia = function(){
-    console.log('clear media');
     post.storage.mediaType = null;
     post.save();
     //that.view.mediaCore.utImage('destroy');
@@ -202,15 +210,18 @@ UT.Expression.ready(function(post){
      var media = $("<div>",{'class':'media image'}).prop('id','media1').appendTo(that.view.mediaCore);
      media
      .utImage()
-     .on('utImage:change', function(e,data){
+     .on('utImage:mediaReady', function(e,data){
        that.showMediaMenu(false);
        post.storage.mediaType = 'image';
        post.save();
        that.validate();
      })
      .on('utImage:resize', function(e,data){
-       console.log('resize',data);
        that.updateSize();
+       setTimeout(function(){media.utImage('update');},1);
+     })
+     .on('utImage:dialogCancel', function(e,data){
+       that.clearMedia();
      });
      if(options.dialog){media.utImage('dialog');}
     },
@@ -221,11 +232,15 @@ UT.Expression.ready(function(post){
      .height(media.width()/(16/9))
      .utVideo()
      .on('utVideo:change', function(e,data){
-       that.showMediaMenu(false);
-       post.storage.mediaType = 'video';
-       post.save();
-       that.updateSize();
-       that.validate();
+        //console.log('change=========',data);
+        that.showMediaMenu(false);
+        post.storage.mediaType = 'video';
+        post.save();
+        that.updateSize();
+        that.validate();
+     }).on('utVideo:dialogclose', function(e,data){
+       //console.log('close=========',data);
+       that.clearMedia();
      });
      if(options.dialog){media.utVideo('dialog');}
      that.updateSize();
@@ -237,11 +252,15 @@ UT.Expression.ready(function(post){
      .height(media.width())
      .utAudio()
      .on('utAudio:change', function(e,data){
-       that.showMediaMenu(false);
-       post.storage.mediaType = 'audio';
-       post.save();
-       that.updateSize();
-       that.validate();
+        //console.log('change=========',data);
+        that.showMediaMenu(false);
+        post.storage.mediaType = 'audio';
+        post.save();
+        that.updateSize();
+        that.validate();
+     }).on('utAudio:dialogclose', function(e,data){
+        //console.log('close=========',data);
+        that.clearMedia();
      });
      if(options.dialog){media.utAudio('dialog');}
      that.updateSize();

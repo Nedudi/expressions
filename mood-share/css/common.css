@@ -74,6 +74,7 @@ h1{
 .container.button_edit_hidden .text_container,
 .container.button_edit_hidden .media_container{
   visibility: hidden;
+  top: -4000px;
 }
 
 .media_container{
