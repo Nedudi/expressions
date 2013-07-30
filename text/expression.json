@@ -1,7 +1,7 @@
 {
   "title":"Mood share",
   "system_name":"mood-share",
-  "version":"1.0.7",
+  "version":"1.0.18",
   "admins":["dmitry"],
   "api_version":"1.1.0",
   "assets":[
@@ -20,8 +20,8 @@
     {                    "path":"expcommon/utPopupText/1.0/js/utPopupText.js"},
     {                    "path":"expcommon/utPopupText/1.0/css/utPopupText.css"},
 
-    {"context":"editor", "path":"js/editor.js"},
-    {"context":"player", "path":"js/player.js"},
+    {                    "path":"js/main.js"},
+
 
     {                    "path":"css/common.css"},
     {"context":"editor", "path":"css/editor.css"},

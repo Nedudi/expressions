@@ -23,22 +23,29 @@
           e.stopPropagation();
         });
 
-        that.utPopupTextTitle = $('<div>').addClass("utPopupText_title").appendTo(that.utPopupTextItems).html("<span>" + that.options.title + "</span>");
-        that.utPopupTextArea = $('<textarea>',{placeholder:'Type here'}).addClass("utPopupText_area").appendTo(that.utPopupTextItems);
-        that.utPopupTextButton = $('<a>').addClass("utPopupText_button ut-success-button ut-button").html('Done').appendTo(that.utPopupTextItems);
-        // $.each(that.options.items, function(i,v){
-        //   $("<div>").addClass("utPopupText_item").appendTo(that.utPopupTextItems).html(v.html).attr("data-value",v.value).on('click',function(){
-        //     that.callback($(this).attr("data-value"));
-        //   });
-        // });
+        //that.utPopupTextTitle = $('<div>').addClass("utPopupText_title").appendTo(that.utPopupTextItems).html("<span>" + that.options.title + "</span>");
+        that.utPopupTextArea = $('<textarea>',{placeholder:'Type here'}).addClass("utPopupText_area").appendTo(that.utPopupTextItems).on('keydown', function(e){
+          if(e.which == 13) {
+            e.preventDefault();
+          }
+        });
 
+        that.utPopupTextButton = $('<a>').addClass("utPopupText_button ut-large-button ut-success-button ut-button").html('Done').appendTo(that.utPopupTextItems).on('click', function(){
+          that.callback(that.utPopupTextArea.val().replace(/(\r\n|\n|\r)/gm," "));
+        });
 
-
-
-        that.show = function(callback){
+        that.show = function(options, callback){
           $that.show();
           that.callback = callback;
-          setTimeout(function(){$that.addClass("utPopupText_show");},1);
+
+          if(options && options.val){
+            that.utPopupTextArea.val(options.val);
+          }
+          that.utPopupTextArea.focus();
+          setTimeout(function(){
+            $that.addClass("utPopupText_show");
+          },1);
+
         };
 
         that.hide = function(){
@@ -56,9 +63,9 @@
       return this;
     },
 
-    show: function(callback) {
+    show: function(options, callback) {
       this.each(function() {
-        if(this.utPopupText) this.utPopupText.show(callback);
+        if(this.utPopupText) this.utPopupText.show(options, callback);
       });
       return this;
     }

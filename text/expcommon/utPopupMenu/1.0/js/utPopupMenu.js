@@ -19,10 +19,11 @@
         that.callback = function(){};
 
         $that.addClass('utPopupMenu');
+        // that.utPopupMenuTitle = $('<div>').addClass("utPopupMenu_title").appendTo($that).html("<span>" + that.options.title + "</span>");
+
         that.utPopupMenuItems = $('<div>').addClass("utPopupMenu_items").appendTo($that).on('click', function(e){
           e.stopPropagation();
         });
-        that.utPopupMenuTitle = $('<div>').addClass("utPopupMenu_title").appendTo(this.utPopupMenuItems).html("<span>" + that.options.title + "</span>");
 
         $.each(that.options.items, function(i,v){
           $("<div>").addClass("utPopupMenu_item").appendTo(that.utPopupMenuItems).html(v.html).attr("data-value",v.value).on('click',function(){
@@ -39,10 +40,21 @@
           $that.find('[data-value="'+v+'"]').addClass('utPopupMenu_item_selected');
         };
 
-        that.show = function(callback){
+        that.show = function(options,callback){
           $that.show();
           that.callback = callback;
-          setTimeout(function(){$that.addClass("utPopupMenu_show");},1);
+          that.select(options.theme);
+          if(options && options.val){
+            that.unselectAll();
+            that.select(options.val);
+          }
+          setTimeout(function(){
+            $that.addClass("utPopupMenu_show");
+            that.utPopupMenuItems.css({
+              'marginTop':-that.utPopupMenuItems.outerHeight()/2 + 'px',
+              'top':'50%'
+            });
+          },1);
         };
 
         that.hide = function(){
@@ -74,9 +86,9 @@
       return this;
     },
 
-    show: function(callback) {
+    show: function(options,callback) {
       this.each(function() {
-        if(this.utPopupMenu) this.utPopupMenu.show(callback);
+        if(this.utPopupMenu) this.utPopupMenu.show(options,callback);
       });
       return this;
     }

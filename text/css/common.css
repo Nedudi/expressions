@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'CasinoHandRegular';
+  src: url('Casino_Hand-webfont.eot');
+  src: url('Casino_Hand-webfont.eot?#iefix') format('embedded-opentype'),
+  url('Casino_Hand-webfont.woff') format('woff'),
+  url('Casino_Hand-webfont.ttf') format('truetype'),
+  url('Casino_Hand-webfont.svg#CasinoHandRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body{
   position: fixed;
 }
@@ -6,8 +18,16 @@ body{
   overflow: hidden;
   font-family:Arial, Sans serif;
   font-size: 10px;
+/*  background-color: green;*/
 }
 
+.container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 * {
   box-sizing: border-box;
@@ -19,19 +39,42 @@ h1{
   margin: 0;
   padding: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .desc{
   padding: 10px;
   width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
 
+.desc .ut-navigate-hashtag,
+.desc .ut-navigate-mention,
+.desc .ut-navigate-url{
+  text-decoration: none;
+}
 
+.desc .ut-navigate-hashtag:hover,
+.desc .ut-navigate-mention:hover,
+.desc .ut-navigate-url:hover{
+  text-decoration: none;
+}
+
+
+.container.button_edit_hidden{
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.container.button_edit_hidden .text_container,
+.container.button_edit_hidden .media_container{
+  visibility: hidden;
+}
 
 .media_container{
   margin-bottom: 10px;
@@ -55,72 +98,10 @@ h1{
 }
 
 
-/*.media.image{
-
+.text_container b{
+  pointer-events: none;
 }
 
-.media.video{
-  height:
+.text_container b a{
+  pointer-events: all;
 }
-
-
-.media.video{
-  height: 100%;
-  width: 100%;
-  z-index: 100;
-  position: absolute;
-}
-*/
-
-
-
-textarea.title_container{
-  height: 1em;
-}
-
-textarea.title_container, pre.title_container{
-  display: block;
-  width: 100%;
-  min-height: inherit;
-  overflow: hidden;
-  box-shadow: none;
-  resize: none;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: 0;
-  left: 0;
-  text-align: inherit;
-  text-decoration: inherit;
-  text-transform: inherit;
-  text-indent: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  font-family: inherit;
-  font-style: inherit;
-  line-height: inherit;
-  color: inherit;
-  letter-spacing: inherit;
-  white-space: pre-wrap;
-  outline: none;
-  box-shadow: 0 0 0 0 transparent;
-  box-sizing: border-box;
-  -o-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-textarea.title_container:focus {
-  outline: none;
-  box-shadow: 0 0 0 0 transparent;
-}
-
-textarea.title_container::-webkit-input-placeholder            {color: rgba(255,255,255,0.5);}
-textarea.title_container::-moz-placeholder                     {color: rgba(255,255,255,0.5);}
-textarea.title_container:-ms-input-placeholder                 {color: rgba(255,255,255,0.5);}
-textarea.title_container:focus::-webkit-input-placeholder      {color: transparent;}
-textarea.title_container:focus::-moz-placeholder               {color: transparent;}
-textarea.title_container:focus:-ms-input-placeholder           {color: transparent;}
