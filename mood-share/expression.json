@@ -25,15 +25,7 @@
     "css/BebasNeue-webfont.woff"
   ],
   "dependencies":[
-
-
-    {                    "path":"expcommon/jquery/2.0/js/jquery.ex.js"},
-
-    {                    "path":"utImage/jquery.ut-image.js"},
-    {                    "path":"utImage/spin.min.js"},
-    {                    "path":"utImage/jquery.ut-image.css"},
-
-    {                    "path":"expcommon/utFontDetect/1.0/fontdetect.2.1.js"},
+    {                    "path":"js/jquery.ex.js"},
 
     {                    "path":"expcommon/utPopupMenu/1.0/js/utPopupMenu.js"},
     {                    "path":"expcommon/utPopupMenu/1.0/css/utPopupMenu.css"},

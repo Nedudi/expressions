@@ -1,6 +1,17 @@
 UT.Expression.ready(function(post){
 
   var that = {};
+  that.editMode = !post.context.player;
+  that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
+
+  that.fonts = {
+    1:'bebas_neueregular',
+    2:'nosiferregular',
+    3:false,
+    4:'press_start_2pregular',
+    5:false,
+    6:'gooddogregular'
+  };
 
 
   // ========= ready state controller begin ==========//
@@ -15,7 +26,7 @@ UT.Expression.ready(function(post){
     readyKey:function(key,data){
       var that = this;
       if(!that.keys) {console.error('Please call setKeys with defined array of keys before calling readyKey for partiqular key');return;}
-      if(!that.keys[key]) {console.error('wrong key, that was not defined in setKeys');return;}
+      if(!that.keys[key]) {console.error('wrong key "'+key+'", that was not defined in setKeys');return;}
       that.keys[key].ready = true;
       that.keys[key].data = data || false;
       console.log('==> readyStateController -> "',key,'" - ', data);
@@ -46,24 +57,25 @@ UT.Expression.ready(function(post){
   };
   // ========= ready state controller end ==========//
 
-  that.readyStateController.setKeys(["imageS","imageD",'font1','font2'], function(){
-    post.size($(post.node).width()/post.storage.ratio);
-  });
 
 
+  if(!that.editMode){
+    readyStateKeys = [];
+
+    if(post.storage.mediaType){
+      readyStateKeys.push(post.storage.mediaType);
+    }
+
+    if(that.fonts[post.storage.theme] && post.storage.h1){
+      readyStateKeys.push('font');
+    }
+
+    that.readyStateController.setKeys(readyStateKeys, function(){
+      that.updateSize(true);
+    });
+  }
 
 
-  that.editMode = !post.context.player;
-  that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
-
-  that.fonts = {
-    1:'bebas_neueregular',
-    2:'nosiferregular',
-    3:false,
-    4:'press_start_2pregular',
-    5:false,
-    6:'gooddogregular'
-  };
 
   if(that.editMode){
     that.fullSize = {width:$(post.node).width(), height:$(post.node).height()};
@@ -73,7 +85,10 @@ UT.Expression.ready(function(post){
     post.valid(!!(post.storage.h1 || post.storage.mediaType));
   };
 
-  that.updateSize = function(){
+  that.updateSize = function(evenViewMode){
+
+    if(!that.editMode && !evenViewMode) return;
+
     var descHeight = that.view.desc.outerHeight();
     if((that.isTouch || that.view.container.hasClass('button_edit_hidden')) && that.editMode && descHeight < that.fullSize.height){
       post.size({height: that.fullSize.height});
@@ -121,6 +136,7 @@ UT.Expression.ready(function(post){
         $(v).html(post.autoLink( $(v).html()));
       });
 
+      if(!that.editMode) that.readyStateController.readyKey('font');
       that.updateSize();
     };
 
@@ -182,11 +198,12 @@ UT.Expression.ready(function(post){
       maxLength: '200'
     });
 
-    that.view.mediaCore.off('click').on('click', '.ut-image-button-remove, .ut-video-ui-remove, .ut-audio-ui-remove', function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      that.clearMedia();
-    });
+    // $('.ut-image-button-remove, .ut-video-ui-remove, .ut-audio-ui-remove').off().on('click', function(e){
+    //   alert(1)
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   that.clearMedia();
+    // });
 
 
 
@@ -261,7 +278,7 @@ UT.Expression.ready(function(post){
     image: function(options){
      var media = $("<div>",{'class':'media image'}).prop('id','media1').appendTo(that.view.mediaCore);
      media
-     .utImage()
+     .utImage({styles:{width:500}})
      .on('utImage:mediaReady', function(e,data){
        that.showMediaMenu(false);
        post.storage.mediaType = 'image';
@@ -270,9 +287,14 @@ UT.Expression.ready(function(post){
      })
      .on('utImage:resize', function(e,data){
        that.updateSize();
-       setTimeout(function(){media.utImage('update');},1);
+       if(!that.editMode) that.readyStateController.readyKey('image');
+       //setTimeout(function(){media.utImage('update');},1);
      })
      .on('utImage:dialogCancel', function(e,data){
+       that.clearMedia();
+     })
+     .on('buttonClick', function(e,button){   ///!!!!!!!!!!!!!!!!!!!!!!
+       e.preventDefault();
        that.clearMedia();
      });
      if(options.dialog){media.utImage('dialog');}
@@ -289,26 +311,41 @@ UT.Expression.ready(function(post){
         post.save();
         that.updateSize();
         that.validate();
-     }).on('utVideo:dialogclose', function(e,data){
+        if(!that.editMode) that.readyStateController.readyKey('video');
+     })
+     .on('utVideo:dialogCancel', function(e,data){
        that.clearMedia();
+     })
+     .on('utVideo:buttonClick', function(e,button){
+       e.preventDefault();
+       if(button == 'remove') that.clearMedia();
      });
      if(options.dialog){media.utVideo('dialog');}
      that.updateSize();
     },
 
     audio: function(options){
-     var media = $("<div>",{'class':'media video'}).prop('id','media1').appendTo(that.view.mediaCore);
+     var media = $("<div>",{'class':'media audio'}).prop('id','media1').appendTo(that.view.mediaCore);
      media
      .height(media.width())
-     .utAudio()
+     .utAudio({
+      skin: 'default'
+     })
      .on('utAudio:mediaReady', function(e,data){
         that.showMediaMenu(false);
         post.storage.mediaType = 'audio';
         post.save();
         that.updateSize();
         that.validate();
-     }).on('utAudio:dialogclose', function(e,data){
-        that.clearMedia();
+        if(!that.editMode) that.readyStateController.readyKey('audio');
+     })
+     .on('utAudio:dialogCancel', function(e,data){
+        //that.clearMedia();
+     })
+     .on('utAudio:buttonClick', function(e,button){
+      alert(1)
+       e.preventDefault();
+       if(button == 'remove') that.clearMedia();
      });
      if(options.dialog){media.utAudio('dialog');}
      that.updateSize();
@@ -345,6 +382,7 @@ UT.Expression.ready(function(post){
   }
 
   that.updateSize();
+
   that.validate();
   post.save();
 
