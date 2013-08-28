@@ -1,6 +1,58 @@
 UT.Expression.ready(function(post){
 
   var that = {};
+
+
+  // ========= ready state controller begin ==========//
+  // TODO: move this controller to API somewhere//
+  that.readyStateController = {
+    setKeys:function(keys, onReady){
+      var that = this;
+      that.keys = {};
+      that.onReady = onReady;
+      keys.map(function(key){that.keys[key] = {ready:false, data:false};});
+    },
+    readyKey:function(key,data){
+      var that = this;
+      if(!that.keys) {console.error('Please call setKeys with defined array of keys before calling readyKey for partiqular key');return;}
+      if(!that.keys[key]) {console.error('wrong key, that was not defined in setKeys');return;}
+      that.keys[key].ready = true;
+      that.keys[key].data = data || false;
+      console.log('==> readyStateController -> "',key,'" - ', data);
+      for(var i in that.keys){if(!that.keys[i].ready) {return;}}
+      console.log('======> YEAH :) all medias/fonts/etc.. are ready',that.keys);
+      that.onReady(that.keys);
+    },
+    cacheImage: function(key, url) {
+      var self = this;
+      var tmpImg = new Image();
+      tmpImg.onload = function() {
+        self.readyKey(key, tmpImg);
+      };
+      tmpImg.onerror = function() {
+        self.readyKey(key, tmpImg);
+      };
+      tmpImg.src = url;
+    },
+    cacheFont: function(key, name) {
+      var self = this;
+      fontdetect.onFontLoaded(name, function(){
+        self.readyKey(key, name);
+      }, function() {
+        console.error('BAD .. FONT NOT LOADED IN 10 SEC...');
+        self.readyKey(key, name);
+      }, {msInterval: 100, msTimeout: 10000});
+    }
+  };
+  // ========= ready state controller end ==========//
+
+  that.readyStateController.setKeys(["imageS","imageD",'font1','font2'], function(){
+    post.size($(post.node).width()/post.storage.ratio);
+  });
+
+
+
+
   that.editMode = !post.context.player;
   that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
 
@@ -231,15 +283,13 @@ UT.Expression.ready(function(post){
      media
      .height(media.width()/(16/9))
      .utVideo()
-     .on('utVideo:change', function(e,data){
-        //console.log('change=========',data);
+     .on('utVideo:mediaReady', function(e,data){
         that.showMediaMenu(false);
         post.storage.mediaType = 'video';
         post.save();
         that.updateSize();
         that.validate();
      }).on('utVideo:dialogclose', function(e,data){
-       //console.log('close=========',data);
        that.clearMedia();
      });
      if(options.dialog){media.utVideo('dialog');}
@@ -251,15 +301,13 @@ UT.Expression.ready(function(post){
      media
      .height(media.width())
      .utAudio()
-     .on('utAudio:change', function(e,data){
-        //console.log('change=========',data);
+     .on('utAudio:mediaReady', function(e,data){
         that.showMediaMenu(false);
         post.storage.mediaType = 'audio';
         post.save();
         that.updateSize();
         that.validate();
      }).on('utAudio:dialogclose', function(e,data){
-        //console.log('close=========',data);
         that.clearMedia();
      });
      if(options.dialog){media.utAudio('dialog');}
