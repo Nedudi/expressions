@@ -1,6 +1,60 @@
 UT.Expression.ready(function(post) {
   "use strict";
   var that = {};
+
+  // ========= ready state controller begin ==========//
+  // TODO: move this controller to API somewhere//
+  that.readyStateController = {
+    setKeys:function(keys, onReady){
+      var that = this;
+      that.keys = {};
+      that.onReady = onReady;
+      keys.map(function(key){that.keys[key] = {ready:false, data:false};});
+    },
+    readyKey:function(key,data){
+      var that = this;
+      if(!that.keys) {console.error('Please call setKeys with defined array of keys before calling readyKey for partiqular key');return;}
+      if(!that.keys[key]) {console.error('wrong key, that was not defined in setKeys');return;}
+      that.keys[key].ready = true;
+      that.keys[key].data = data || false;
+      console.log('==> readyStateController -> "',key,'" - ', data);
+      for(var i in that.keys){if(!that.keys[i].ready) {return;}}
+      console.log('======> YEAH :) all medias/fonts/etc.. are ready',that.keys);
+      that.onReady(that.keys);
+    },
+    cacheImage: function(key, url) {
+      var self = this;
+      var tmpImg = new Image();
+      tmpImg.onload = function() {
+        self.readyKey(key, tmpImg);
+      };
+      tmpImg.onerror = function() {
+        self.readyKey(key, tmpImg);
+      };
+      tmpImg.src = url;
+    },
+    cacheFont: function(key, name) {
+      var self = this;
+      fontdetect.onFontLoaded(name, function(){
+        self.readyKey(key, name);
+      }, function() {
+        console.error('BAD .. FONT NOT LOADED IN 10 SEC...');
+        self.readyKey(key, name);
+      }, {msInterval: 100, msTimeout: 10000});
+    }
+  };
+  // ========= ready state controller end ==========//
+
+  that.readyStateController.setKeys(["imageS","imageD",'font1','font2'], function(){
+    post.size($(post.node).width()/post.storage.ratio);
+  });
+
+  that.readyStateController.cacheImage('imageS',post.storage.imageS.url);
+  that.readyStateController.cacheImage('imageD',post.storage.imageD.url);
+  that.readyStateController.cacheFont('font1','BoycottRegular');
+  that.readyStateController.cacheFont('font2','CasinoHandRegular');
+
+
   var element = $(post.node);
   var isTouch = 'ontouchstart' in window || window.navigator.msMaxTouchPoints > 0;
   that.view = {};
@@ -15,20 +69,6 @@ UT.Expression.ready(function(post) {
   post.size(element.width()/post.storage.ratio);
 
   var currentD = true;
-
-  var iS = new Image();
-  var iD = new Image();
-
-  iS.onload = function(){
-    //console.log('ImageS loaded')
-  };
-
-  iD.onload = function(){
-    //console.log('ImageD loaded')
-  };
-
-  iS.src = post.storage.imageD.url;
-  iD.src = post.storage.imageS.url;
 
 
 
