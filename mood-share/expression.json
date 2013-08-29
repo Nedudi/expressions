@@ -2,7 +2,7 @@
   "title":"Mood share",
   "system_name":"mood-share",
   "description":"Share your mood with one of 6 different styles. You can add image, video or audio as well",
-  "version":"1.0.50",
+  "version":"2.0.1",
   "admins":["dmitry"],
   "api_version":"1.2.1",
   "assets":[
@@ -17,7 +17,6 @@
     "images/rasta.jpg",
     "images/splash1.png",
     "images/tvtest.jpg",
-
     "css/pressstart2p-regular-webfont.woff",
     "css/nosifer-regular-webfont.woff",
     "css/Casino_Hand-webfont.woff",
@@ -35,11 +34,9 @@
 
     {                    "path":"js/main.js"},
 
-
     {                    "path":"css/common.css"},
     {"context":"editor", "path":"css/editor.css"},
     {"context":"player", "path":"css/player.css"},
-
 
     {                    "path":"css/theme1.css"},
     {                    "path":"css/theme2.css"},
@@ -50,6 +47,5 @@
 
     {                    "path":"js/slabtext.js"},
     {                    "path":"css/slabtext.css"}
-
   ]
 }

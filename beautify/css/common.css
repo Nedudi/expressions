@@ -165,3 +165,8 @@
   font-size: 0.5em;
   background: rgba(0,0,0,0.1);
 }
+
+.ut_e a {
+  text-decoration: none;
+  color: yellow;
+}

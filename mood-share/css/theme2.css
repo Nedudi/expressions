@@ -12,10 +12,7 @@
 
 }
 
-.t2{
-
-}
-
+.t2{}
 
 .t2 .media_container,
 .t2 .text_container{
@@ -44,8 +41,6 @@
   background-image:         radial-gradient(ellipse at center,     rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.8) 70%, rgba(255,255,255,0.9) 90%), url("../images/splash1.png");
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.5) inset;
 }
-
-
 
 .t2 .text_container span{
   line-height: 0.9;
@@ -129,12 +124,9 @@
   background-image:     -ms-radial-gradient(center, circle cover, rgba(255,255,255,0.1) 26%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 90%), url("../images/splash1.png"), url("../images/splash1.png"), url("../images/splash1.png");
   background-image:      -o-radial-gradient(center, circle cover, rgba(255,255,255,0.1) 26%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 90%), url("../images/splash1.png"), url("../images/splash1.png"), url("../images/splash1.png");
   background-image:         radial-gradient(circle at center,     rgba(255,255,255,0.1) 26%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0) 90%), url("../images/splash1.png"), url("../images/splash1.png"), url("../images/splash1.png");
-
-  /*background-image: url(../images/splash1.png), url(../images/splash2.png);*/
   opacity: 1;
   pointer-events: none;
 }
-
 
 .t2 .ut-navigate-hashtag,
 .t2 .ut-navigate-mention,

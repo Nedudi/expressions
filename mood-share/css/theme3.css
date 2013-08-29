@@ -1,24 +1,6 @@
+/*=======================  THEME 3  =========================*/
 
-
-/*=======================  THEME 2  =========================*/
-
-
-/*@font-face {
-    font-family: 'tizaregular';
-    src: url('tiza-webfont.eot');
-    src: url('tiza-webfont.eot?#iefix') format('embedded-opentype'),
-         url('tiza-webfont.woff') format('woff'),
-         url('tiza-webfont.ttf') format('truetype'),
-         url('tiza-webfont.svg#tizaregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-*/
-.t3{
-  background: url(../images/grunge.png);
-}
-
+.t3{}
 
 .t3 .media_container,
 .t3 .text_container{
@@ -64,8 +46,7 @@
   line-height: 0.9;
   padding: 15px;
   text-transform: uppercase;
-  /*font-family: 'tizaregular', sans-serif;*/
-    font-family: Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
   font-weight: bold;
 }
 
@@ -146,8 +127,6 @@ r
 .t3 .text_container span:nth-child(8n-4) b:nth-child(8n-1) {top: 0.7rem;  }
 .t3 .text_container span:nth-child(8n-3) b:nth-child(8n-1) {top: 0.6rem;  }
 .t3 .text_container span:nth-child(8n-2) b:nth-child(8n-1) {top: 0.7rem;  }
-
-
 
 .t3 .ut-navigate-hashtag,
 .t3 .ut-navigate-mention,
