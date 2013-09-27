@@ -2,9 +2,9 @@
   "title":"Mood share",
   "system_name":"mood-share",
   "description":"Share your mood with one of 6 different styles. You can add image, video or audio as well",
-  "version":"2.0.1",
+  "version":"2.0.4",
   "admins":["dmitry"],
-  "api_version":"1.2.1",
+  "api_version":"1.2.4",
   "assets":[
     "images/1.png",
     "images/2.png",

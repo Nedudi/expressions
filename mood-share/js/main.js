@@ -98,6 +98,8 @@ UT.Expression.ready(function(post){
       'marginTop': - descHeight/2 + 'px',
       'top': '50%'
     });
+
+    post.display();
   };
 
   that.updateTheme = function(v){

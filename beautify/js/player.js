@@ -47,6 +47,7 @@ UT.Expression.ready(function(post) {
 
   that.readyStateController.setKeys(["imageS","imageD",'font1','font2'], function(){
     post.size($(post.node).width()/post.storage.ratio);
+    post.display();
   });
 
   that.readyStateController.cacheImage('imageS',post.storage.imageS.url);

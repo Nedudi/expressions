@@ -2,8 +2,8 @@
   "title":"Beautify o_O",
   "description": "Have fun with your friends! 'Beautify' someone's face or body with magnifying effects. Add your cool title over it and share everywhere!",
   "system_name":"beautify",
-  "version":"2.0.3",
-  "api_version": "1.1.0",
+  "version":"2.0.5",
+  "api_version": "1.2.4",
   "platform": ["desktop", "ios"],
   "dependencies":[
     {                    "path":"css/common.css"},
