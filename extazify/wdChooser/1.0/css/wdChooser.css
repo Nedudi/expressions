@@ -1,0 +1,396 @@
+.wdChooser {
+  position: absolute;
+  bottom: 0;
+  height: 5em;
+  line-height: 5em;
+  width: 100%;
+  font-family: Arial, Helvetica;
+  /* overflow: hidden; disabled to fix bug with rendering in chrome #7658 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: rgba(220, 220, 220, 1);
+  z-index: 50;
+}
+
+.wdChooser div,
+.wdChooser span,
+.wdChooser a,
+.wdChooser strong,
+.wdChooser h1,
+.wdChooser h2,
+.wdChooser h3,
+.wdChooser h4,
+.wdChooser h5,
+.wdChooser h6,
+.wdChooser label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.wdChooser .wdChooser_scroll_area {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  display: table;
+  table-layout: fixed;
+}
+
+.wdChooser .wdChooser_item {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.wdChooser .wdChooser_item.wdChooser_item_container span {
+  font-size: 1.8em;
+}
+
+.wdChooser.wdChooser_autoFit .wdChooser_item {
+  display: table-cell;
+}
+
+.wdChooser .wdChooser_item a {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  vertical-align: middle;
+  text-align: center;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.wdChooser .wdChooser_scroll_button {
+  height: 100%;
+  width: 3em;
+  position: absolute;
+  top: 0;
+}
+
+.wdChooser .wdChooser_scroll_button span {
+  font-size: 1.8em;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.wdChooser .wdChooser_scroll_button_next {
+  right: 0;
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+.wdChooser .wdChooser_scroll_button_prev {
+  left: 0;
+  box-shadow: -1px 1px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+/*light*/
+.wdChooser {
+  background-color: rgba(50, 50, 50, 1);
+  background-image: -webkit-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 100%); /* Chrome10+,Safari5.1+ */
+  background-image: -moz-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 100%); /* FF3.6+ */
+  background-image: -o-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 100%); /* Opera 11.10+ */
+  background-image: -ms-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 100%); /* IE10+ */
+  background-image: linear-gradient(to bottom, rgba(50, 50, 50, 1) 0%, rgba(0, 0, 0, 1) 100%); /* W3C */
+  border-top: 1px solid rgba(70, 70, 70, 1);
+
+}
+
+/*dark*/
+.wdChooser.wdChooser_sub1,
+.wdChooser.wdChooser_sub2,
+.wdChooser.wdChooser_sub12,
+.wdChooser.wdChooser_sub1  .wdChooser_scroll_button,
+.wdChooser.wdChooser_sub2  .wdChooser_scroll_button,
+.wdChooser.wdChooser_sub12 .wdChooser_scroll_button {
+  background: rgba(30, 30, 30, 1);
+}
+
+/*====================== wdChooser_main =========================*/
+
+.wdChooser.wdChooser_main .wdChooser_item {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  /*  vertical-align: top;*/
+  font-weight: bold;
+  overflow: hidden;
+  /*box-shadow: 0 1px 0 0 rgba(255,255,255,0.25) inset, 1px 0 0 0 rgba(255,255,255,0.25) inset, -1px 0 0 0 rgba(0,0,0,0.25) inset;*/
+  padding: 0 1px 1px 1px;
+}
+
+.wdChooser.wdChooser_main .wdChooser_item a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*  border: 2px solid transparent;*/
+  border-top: none;
+  z-index: 0;
+  content: '';
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  border-radius: 0 0 4px 4px;
+
+  background-color: rgba(50, 50, 50, 1);
+  background-image: -webkit-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 100%); /* Chrome10+,Safari5.1+ */
+  background-image: -moz-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 100%); /* FF3.6+ */
+  background-image: -o-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 100%); /* Opera 11.10+ */
+  background-image: -ms-linear-gradient(top, rgba(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 100%); /* IE10+ */
+  background-image: linear-gradient(top bottom, rgba(50, 50, 50, 1) 0%, rgba(30, 30, 30, 1) 100%); /* W3C */
+  box-sizing: border-box;
+}
+
+.wdChooser.wdChooser_main .wdChooser_item:hover a::after {
+  background: rgba(50, 50, 50, 1);
+}
+
+.wdChooser.wdChooser_main .wdChooser_item.wdChooser_item_selected a::after {
+  background-color: rgba(20, 20, 20, 1);
+  background-image: -webkit-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100%); /* Chrome10+,Safari5.1+ */
+  background-image: -moz-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100% ); /* FF3.6+ */
+  background-image: -o-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100% ); /* Opera 11.10+ */
+  background-image: -ms-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100% ); /* IE10+ */
+  background-image: linear-gradient(top bottom, rgba(20, 20, 20, 1) 0%, rgba(40, 40, 40, 1) 100% ); /* W3C */
+}
+
+.wdChooser.wdChooser_main .wdChooser_item.wdChooser_item_selected:hover a::after {
+  background-color: rgba(20, 20, 20, 1);
+  background-image: -webkit-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(50, 50, 50, 1) 100%); /* Chrome10+,Safari5.1+ */
+  background-image: -moz-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(50, 50, 50, 1) 100% ); /* FF3.6+ */
+  background-image: -o-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(50, 50, 50, 1) 100% ); /* Opera 11.10+ */
+  background-image: -ms-linear-gradient(top, rgba(20, 20, 20, 1) 0%, rgba(50, 50, 50, 1) 100% ); /* IE10+ */
+  background-image: linear-gradient(top bottom, rgba(20, 20, 20, 1) 0%, rgba(50, 50, 50, 1) 100% ); /* W3C */
+}
+
+.wdChooser.wdChooser_main .wdChooser_item a {
+  line-height: 0;
+  position: relative;
+  z-index: 1;
+  display: block;
+  border-radius: 0 0 4px 4px;
+}
+
+.wdChooser.wdChooser_main .wdChooser_item a span {
+  font-size: 2.6em;
+  display: block;
+  line-height: 0;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+  padding-top: 0.4em;
+}
+
+.wdChooser.wdChooser_main .wdChooser_item.wdChooser_item_selected a span {
+  color: rgba(90, 185, 245, 1);
+}
+
+.wdChooser.wdChooser_main .wdChooser_item.wdChooser_item_hastitle a span {
+  font-size: 2.2em;
+  position: relative;
+  z-index: 1;
+  padding-top: 0.3em;
+  line-height: 1.3;
+}
+
+.wdChooser.wdChooser_main .wdChooser_item a strong {
+  line-height: 0.3em;
+  font-size: 1.1em;
+  position: relative;
+  z-index: 1;
+
+}
+
+.wdChooser.wdChooser_main .wdChooser_item_selected,
+.wdChooser.wdChooser_main .wdChooser_item_active {
+  /*  background-color: rgba(25,25,25,1);*/
+  color: rgba(224, 224, 224, 1);
+  /*  box-shadow: 0 1px 0 0 rgba(255,255,255,0.25) inset, 0 0 3px 2px rgba(0,0,0,0.25) inset;*/
+}
+
+.wdChooser.wdChooser_main .wdChooser_item_active {
+  /*  background-color: rgba(25,25,25,1);*/
+  color: rgba(224, 224, 224, 1);
+  /*box-shadow: 0 1px 0 0 rgba(255,255,255,0.25) inset, 0 0 3px 2px rgba(0,0,0,0.25) inset;*/
+}
+
+.wdChooser.wdChooser_main .wdChooser_item_expanded {
+  /* box-shadow: 0 0 0 0 rgba(255,255,255,0) inset, 0 0 3px 2px rgba(0,0,0,0.25) inset;*/
+}
+
+.wdChooser.wdChooser_main  .wdChooser_item.wdChooser_item_ok {
+  color: green;
+  width: 6em;
+}
+
+.wdChooser.wdChooser_main  .wdChooser_item.wdChooser_item_cancel {
+  color: red;
+  width: 6em;
+}
+
+/*====================== wdChooser_sub12 =========================*/
+
+.wdChooser.wdChooser_sub1,
+.wdChooser.wdChooser_sub2,
+.wdChooser.wdChooser_sub12 {
+  box-shadow: 0px 0px 0 rgba(255, 255, 255, 0.2) inset;
+}
+
+.wdChooser.wdChooser_sub1 {
+  bottom: 5em;
+  height: 5em;
+  line-height: 5em;
+}
+
+.wdChooser.wdChooser_sub2 {
+  bottom: 10em;
+  height: 5em;
+  line-height: 5em;
+}
+
+.wdChooser.wdChooser_sub12 {
+  bottom: 5em;
+  height: 10em;
+  line-height: 10em;
+}
+
+.wdChooser.wdChooser_sub1 .wdChooser_item {
+  width: 4.6em;
+}
+
+.wdChooser.wdChooser_sub2 .wdChooser_item {
+  width: 5em;
+}
+
+.wdChooser.wdChooser_sub12 .wdChooser_item {
+  width: 7em;
+}
+
+.wdChooser.wdChooser_sub1:not(.wdChooser_autoFit) .wdChooser_item:first-child {
+  /*  padding-left: 1.2em;
+    width: 5.8em;*/
+}
+
+.wdChooser.wdChooser_sub2:not(.wdChooser_autoFit) .wdChooser_item:first-child {
+  padding-left: 1em;
+  width: 6em;
+}
+
+.wdChooser.wdChooser_sub12:not(.wdChooser_autoFit) .wdChooser_item:first-child {
+  padding-left: 0.5em;
+  width: 7.5em;
+}
+
+.wdChooser.wdChooser_sub1  .wdChooser_item a,
+.wdChooser.wdChooser_sub2  .wdChooser_item a,
+.wdChooser.wdChooser_sub12 .wdChooser_item a {
+  background-size: contain;
+  background-position: 50% 50%;
+  background-color: rgba(228, 228, 228, 1);
+  box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.6), 0 0 0px 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+.wdChooser.wdChooser_sub1 .wdChooser_item a,
+.wdChooser.wdChooser_sub2 .wdChooser_item a {
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  border-radius: 5px;
+}
+
+.wdChooser.wdChooser_sub12 .wdChooser_item a {
+  width: 6em;
+  height: 6em;
+  line-height: 6em;
+  margin-top: -1.6em;
+  border-radius: 8px;
+}
+
+.wdChooser.wdChooser_sub1  .wdChooser_item a::after,
+.wdChooser.wdChooser_sub2  .wdChooser_item a::after,
+.wdChooser.wdChooser_sub12 .wdChooser_item a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  content: '';
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6+ */
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* IE10+ */
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* Opera 11.10+ */
+  background: linear-gradient(top bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* W3C */
+}
+
+.wdChooser.wdChooser_sub1  .wdChooser_item.wdChooser_item_selected a,
+.wdChooser.wdChooser_sub2  .wdChooser_item.wdChooser_item_selected a,
+.wdChooser.wdChooser_sub12 .wdChooser_item.wdChooser_item_selected a {
+  box-shadow: 0 0 0px 1px rgba(50, 140, 220, 1), 0 0 0px 3px rgba(90, 185, 245, 1);
+}
+
+.wdChooser.wdChooser_sub1 .wdChooser_item a strong,
+.wdChooser.wdChooser_sub2 .wdChooser_item a strong {
+  display: none;
+}
+
+.wdChooser.wdChooser_sub12 .wdChooser_item a strong {
+  position: absolute;
+  display: block;
+  width: 100%;
+  line-height: 13em;
+  top: 0;
+  left: 0;
+  font-size: 1.1em;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.wdChooser.wdChooser_sub1 .wdChooser_item a span,
+.wdChooser.wdChooser_sub2 .wdChooser_item a span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgba(25, 25, 25, 1);
+  background: rgba(30, 30, 30, 1);
+}
+
+.wdChooser.wdChooser_sub12 .wdChooser_item a span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgba(25, 25, 25, 1);
+}
+

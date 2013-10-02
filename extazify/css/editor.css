@@ -1,0 +1,129 @@
+
+
+.help .h{
+  font-size: 28px;
+  color: white;
+  text-shadow:  0 0 5px rgba(0,0,0,1);
+  text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+.help{
+  display: none;
+}
+
+
+.help-mode .help{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+  font-family: 'CasinoHandRegular';
+  border: 3px dashed white;
+  z-index: 20;
+  padding: 20px;
+  pointer-events: none;
+  background: rgba(0,0,0,0.6);
+}
+
+.help-mover{
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  z-index: 20;
+}
+
+
+.help-finger{
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  background-image: url('../img/finger.svg');
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.help-circle{
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,1);
+  pointer-events:none;
+  color: transparent;
+  box-shadow:  0 0 5px rgba(0,0,0,1) inset;
+  z-index: 1;
+}
+
+.help-mover{
+  -webkit-animation: finger 3s infinite ease-in-out;
+  -moz-animation:    finger 3s infinite ease-in-out;
+  animation:         finger 3s infinite ease-in-out;
+}
+
+@-webkit-keyframes finger {
+  0% {
+    -webkit-transform: translate(20px,100px);
+    -moz-transform:    translate(20px,100px);
+    transform:         translate(20px,100px);
+  }
+
+  20% {
+    -webkit-transform: translate(20px,100px);
+    -moz-transform:    translate(20px,100px);
+    transform:         translate(20px,100px);
+  }
+
+
+  50% {
+    -webkit-transform: translate(200px,200px);
+    -moz-transform:    translate(200px,200px);
+    transform:         translate(200px,200px);
+  }
+
+  100% {
+    -webkit-transform: translate(200px,200px);
+    -moz-transform:    translate(200px,200px);
+    transform:         translate(200px,200px);
+  }
+}
+
+@-moz-keyframes finger {
+  0% {
+    -webkit-transform: translate(20px,100px);
+    -moz-transform:    translate(20px,100px);
+    transform:         translate(20px,100px);
+  }
+
+  20% {
+    -webkit-transform: translate(20px,100px);
+    -moz-transform:    translate(20px,100px);
+    transform:         translate(20px,100px);
+  }
+
+
+  50% {
+    -webkit-transform: translate(200px,200px);
+    -moz-transform:    translate(200px,200px);
+    transform:         translate(200px,200px);
+  }
+
+  100% {
+    -webkit-transform: translate(200px,200px);
+    -moz-transform:    translate(200px,200px);
+    transform:         translate(200px,200px);
+  }
+}

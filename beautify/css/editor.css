@@ -334,7 +334,7 @@
   border-radius: 50px;
   font-size: 20px;
   text-align: center;
-  line-height:30px; 
+  line-height:30px;
   color: white;
   position: relative;
 }
@@ -469,7 +469,7 @@ border-bottom-left-radius: 16px;
 }
 
 
-label { 
+label {
   position: absolute;
   right: 30px;
   top:10px;
@@ -483,7 +483,7 @@ input { position:absolute; left:-9999px }
 .slider-v1 {
   position: absolute;
   display: block;
-  width: 5.5em; 
+  width: 5.5em;
   height: 3em;
   cursor: pointer;
   border-radius: 1.5em;
@@ -494,11 +494,11 @@ input { position:absolute; left:-9999px }
 }
 
 .slider_before {
-  position: absolute; 
+  position: absolute;
   content:'';
-  width: 2em; 
+  width: 2em;
   height: 2em;
-  top: 0.5em; 
+  top: 0.5em;
   left: 0.5em;
   border-radius: 50%;
   transition: 250ms ease-in-out;
@@ -509,11 +509,11 @@ input { position:absolute; left:-9999px }
   box-shadow:0 0.1em 0.15em -0.05em rgba(255,255,255,0.9) inset, 0 0.5em 0.3em -0.1em rgba(0,0,0,0.25);
 }
 
-.slider_l1, 
+.slider_l1,
 .slider_l2{
-  position: absolute; 
+  position: absolute;
   content:'';
-  width: 1em; 
+  width: 1em;
   height: 1em;
   text-shadow: 0 0 0 transparent;
   transition: 250ms ease-in-out;

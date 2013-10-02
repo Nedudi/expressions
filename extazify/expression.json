@@ -1,0 +1,20 @@
+{
+  "title":"extazify",
+  "system_name":"extazify",
+  "description":"extazify everything around",
+  "version":"1.0.14",
+  "admins":["dmitry"],
+  "api_version":"1.2.8",
+  "assets":[
+  ],
+  "dependencies":[
+    {                    "path":"js/main.js"},
+    {                    "path":"js/jquery.ut-image.js"},
+    {                    "path":"css/jquery.ut-image.css"},
+    {"context":"editor", "path":"js/jQuery.pointerAction.js"},
+
+    {                    "path":"css/common.css"},
+    {"context":"editor", "path":"css/editor.css"},
+    {"context":"player", "path":"css/player.css"}
+  ]
+}
